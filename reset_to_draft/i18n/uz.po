@@ -1,0 +1,202 @@
+# Uzbek translation for reset_to_draft.
+msgid ""
+msgstr ""
+"Project-Id-Version: reset_to_draft 19.0.1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Reset to Draft"
+msgstr "Qoralamaga qaytarish"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Delete the accounting entry"
+msgstr "Buxgalteriya provodkasini o'chirish"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Remove movements & valuation, revert stock"
+msgstr "Harakat va baholashni o'chirish, ombor qoldig'ini qaytarish"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Reset the order to draft"
+msgstr "Buyurtmani qoralamaga qaytarish"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Movements and valuation removed; stock reverted."
+msgstr "Harakatlar va baholash o'chirildi; ombor qoldig'i qaytarildi."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Invoices, movements and valuation removed; order reset to draft."
+msgstr ""
+"Hisob-fakturalar, harakatlar va baholash o'chirildi; buyurtma qoralamaga "
+"qaytarildi."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Bills, movements and valuation removed; order reset to draft."
+msgstr ""
+"Yetkazib beruvchi hisoblari, harakatlar va baholash o'chirildi; buyurtma "
+"qoralamaga qaytarildi."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Journal entry %(name)s is hash-locked and cannot be removed."
+msgstr "%(name)s provodkasi hash bilan qulflangan va o'chirib bo'lmaydi."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Invoice %(name)s has reconciled payments — unreconcile them first."
+msgstr ""
+"%(name)s hisob-fakturasida solishtirilgan to'lovlar bor — avval ularni bekor"
+" qiling."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Date falls in a locked period: %(dates)s."
+msgstr "Sana qulflangan davrga to'g'ri keladi: %(dates)s."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "This order has linked manufacturing orders — reset those first."
+msgstr ""
+"Bu buyurtmaga bog'liq ishlab chiqarish buyurtmalari bor — avval ularni "
+"qaytaring."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Multi-lot/serial manufacturing order — reset each lot manually."
+msgstr ""
+"Bir nechta lot/seriyali ishlab chiqarish buyurtmasi — har bir lotni qo'lda "
+"qaytaring."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Documents"
+msgstr "Hujjatlar"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Will be removed"
+msgstr "O'chiriladi"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Blockers"
+msgstr "To'siqlar"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Resolve all blockers before resetting."
+msgstr "Qaytarishdan oldin barcha to'siqlarni bartaraf eting."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Nothing to reset."
+msgstr "Qaytariladigan narsa yo'q."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid "Cancel and delete the pending transfer"
+msgstr "Kutilayotgan ko'chirishni bekor qilish va o'chirish"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/reset_to_draft_mixin.py:0
+msgid ""
+"%(product)s: %(avail)s available at %(loc)s but %(qty)s must be reverted — "
+"the goods have already moved on. Reset the later step first."
+msgstr ""
+"%(product)s: %(loc)s joyida %(avail)s mavjud, lekin %(qty)s qaytarilishi "
+"kerak — mahsulot allaqachon keyingi bosqichga o'tgan. Avval keyingi "
+"bosqichni qaytaring."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/purchase_order.py:0
+msgid ""
+"Bill %(bill)s is shared with order(s) %(orders)s — reset is not allowed "
+"while the shared bill exists."
+msgstr ""
+"%(bill)s hisobi %(orders)s buyurtma(lar)i bilan umumiy — umumiy hisob "
+"mavjud ekan, qaytarish mumkin emas."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/purchase_order.py:0
+msgid ""
+"Landed cost %(name)s is validated on this order's transfers — cancel it "
+"before resetting."
+msgstr ""
+"%(name)s qo'shimcha xarajati ushbu buyurtma ko'chirishlarida tasdiqlangan — "
+"qaytarishdan oldin uni bekor qiling."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/purchase_order.py:0
+msgid "Only confirmed purchase orders can be reset (%(name)s is %(state)s)."
+msgstr ""
+"Faqat tasdiqlangan xarid buyurtmalarini qaytarish mumkin (%(name)s holati: "
+"%(state)s)."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/sale_order.py:0
+msgid ""
+"Invoice %(invoice)s is shared with order(s) %(orders)s — reset is not "
+"allowed while the shared invoice exists."
+msgstr ""
+"%(invoice)s hisob-fakturasi %(orders)s buyurtma(lar)i bilan umumiy — umumiy "
+"hisob-faktura mavjud ekan, qaytarish mumkin emas."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/sale_order.py:0
+msgid "Only confirmed sales orders can be reset (%(name)s is %(state)s)."
+msgstr ""
+"Faqat tasdiqlangan sotuv buyurtmalarini qaytarish mumkin (%(name)s holati: "
+"%(state)s)."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/mrp_production.py:0
+msgid "Only done manufacturing orders can be reset (%(name)s is %(state)s)."
+msgstr ""
+"Faqat bajarilgan ishlab chiqarish buyurtmalarini qaytarish mumkin (%(name)s "
+"holati: %(state)s)."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/mrp_production.py:0
+msgid "Multi-lot/serial manufacturing order %(name)s cannot be reset automatically."
+msgstr ""
+"Bir nechta lot/seriyali %(name)s ishlab chiqarish buyurtmasini avtomatik "
+"qaytarib bo'lmaydi."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/models/stock_picking.py:0
+msgid "Only done transfers can be reset (%(name)s is %(state)s)."
+msgstr ""
+"Faqat bajarilgan ko'chirishlarni qaytarish mumkin (%(name)s holati: "
+"%(state)s)."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/wizard/reset_to_draft_wizard.py:0
+msgid "%(model)s does not support Reset to Draft."
+msgstr "%(model)s qoralamaga qaytarishni qo'llab-quvvatlamaydi."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/wizard/reset_to_draft_wizard.py:0
+msgid "You are not allowed to reset %(model)s documents to draft."
+msgstr "Sizga %(model)s hujjatlarini qoralamaga qaytarishga ruxsat berilmagan."
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/wizard/reset_to_draft_wizard.py:0
+msgid "A new blocker appeared on %(doc)s: %(reason)s"
+msgstr "%(doc)s hujjatida yangi to'siq paydo bo'ldi: %(reason)s"
+
+#. module: reset_to_draft
+#: code:addons/reset_to_draft/wizard/reset_to_draft_wizard.py:0
+msgid "Reset failed and was fully rolled back: %s"
+msgstr "Qaytarish amalga oshmadi, barcha o'zgarishlar to'liq bekor qilindi: %s"

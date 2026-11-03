@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form_reset_to_draft" model="ir.ui.view">
+        <field name="name">sale.order.form.reset.to.draft</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_reset_to_draft_wizard" type="object"
+                        string="Reset to Draft"
+                        groups="reset_to_draft.group_reset_to_draft_sale"
+                        invisible="state != 'sale'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form_reset_to_draft" model="ir.ui.view">
+        <field name="name">purchase.order.form.reset.to.draft</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_reset_to_draft_wizard" type="object"
+                        string="Reset to Draft"
+                        groups="reset_to_draft.group_reset_to_draft_purchase"
+                        invisible="state != 'purchase'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_picking_form_reset_to_draft" model="ir.ui.view">
+        <field name="name">stock.picking.form.reset.to.draft</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_reset_to_draft_wizard" type="object"
+                        string="Reset to Draft"
+                        groups="reset_to_draft.group_reset_to_draft_sale,reset_to_draft.group_reset_to_draft_purchase"
+                        invisible="state != 'done'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_form_reset_to_draft" model="ir.ui.view">
+        <field name="name">mrp.production.form.reset.to.draft</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_reset_to_draft_wizard" type="object"
+                        string="Reset to Draft"
+                        groups="reset_to_draft.group_reset_to_draft_sale,reset_to_draft.group_reset_to_draft_purchase"
+                        invisible="state != 'done'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

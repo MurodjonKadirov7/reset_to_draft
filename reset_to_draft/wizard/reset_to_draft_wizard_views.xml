@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="reset_to_draft_wizard_form" model="ir.ui.view">
+        <field name="name">reset.to.draft.wizard.form</field>
+        <field name="model">reset.to.draft.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reset to Draft">
+                <field name="is_blocked" invisible="1"/>
+                <field name="res_model" invisible="1"/>
+                <field name="res_ids" invisible="1"/>
+                <div class="alert alert-warning" role="alert" invisible="not is_blocked">
+                    <strong>Cannot reset yet.</strong>
+                    Resolve the blockers below, then reopen this dialog.
+                </div>
+                <div class="alert alert-warning" role="alert" invisible="is_blocked">
+                    Movements, valuation and accounting entries will be permanently
+                    removed and stock reverted to its prior on-hand. The documents
+                    then become draft. This cannot be undone.
+                </div>
+                <group>
+                    <field name="target_display"/>
+                </group>
+                <notebook>
+                    <page string="Will be removed" name="lines">
+                        <field name="line_ids">
+                            <list create="false" edit="false" delete="false">
+                                <field name="document"/>
+                                <field name="operation"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Blockers" name="blockers" invisible="not is_blocked">
+                        <field name="blocker_ids">
+                            <list create="false" edit="false" delete="false">
+                                <field name="document"/>
+                                <field name="reason"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_confirm_reset" type="object"
+                            string="Reset to Draft" class="btn-primary"
+                            invisible="is_blocked"
+                            confirm="Movements, valuation and accounting entries will be permanently removed and stock reverted. Continue?"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
