@@ -32,7 +32,7 @@
                     <page string="Blockers" name="blockers" invisible="not is_blocked">
                         <field name="blocker_ids">
                             <list create="false" edit="false" delete="false">
-                                <field name="document"/>
+                                <field name="document" width="200px"/>
                                 <field name="reason"/>
                             </list>
                         </field>

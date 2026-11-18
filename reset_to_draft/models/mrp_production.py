@@ -15,18 +15,13 @@ class MrpProduction(models.Model):
 
     def _reset_account_moves(self):
         self.ensure_one()
-        return (self.sudo().move_raw_ids | self.sudo().move_finished_ids).account_move_id
+        return (self.sudo().move_raw_ids | self.sudo().move_finished_ids).account_move_ids
 
     def _reset_detect_blockers(self):
         self.ensure_one()
         blockers = super()._reset_detect_blockers()
         blockers += self._reset_stock_revert_blockers(
             self.sudo().move_raw_ids | self.sudo().move_finished_ids)
-        if len(self.lot_producing_ids) > 1:
-            blockers.append({
-                'record': self,
-                'reason': _("Multi-lot/serial manufacturing order — reset each lot manually."),
-            })
         return blockers
 
     def _reset_execute(self):
@@ -34,9 +29,6 @@ class MrpProduction(models.Model):
         if self.state != 'done':
             raise UserError(_("Only done manufacturing orders can be reset (%(name)s is %(state)s).",
                               name=self.display_name, state=self.state))
-        if len(self.lot_producing_ids) > 1:
-            raise UserError(_("Multi-lot/serial manufacturing order %(name)s cannot be reset automatically.",
-                              name=self.display_name))
         self._reset_delete_moves(self.sudo().move_raw_ids | self.sudo().move_finished_ids)
         self.sudo().workorder_ids.action_cancel()
         self.sudo().write({'state': 'draft', 'qty_producing': 0})

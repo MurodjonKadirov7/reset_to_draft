@@ -15,7 +15,7 @@ class StockPicking(models.Model):
 
     def _reset_account_moves(self):
         self.ensure_one()
-        return self.sudo().move_ids.account_move_id
+        return self.sudo().move_ids.account_move_ids
 
     def _reset_detect_blockers(self):
         self.ensure_one()

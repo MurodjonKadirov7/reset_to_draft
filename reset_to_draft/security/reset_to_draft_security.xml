@@ -5,19 +5,15 @@
         <field name="sequence">90</field>
     </record>
 
-    <record id="res_groups_privilege_reset_to_draft" model="res.groups.privilege">
-        <field name="name">Reset to Draft</field>
-        <field name="sequence">90</field>
-        <field name="category_id" ref="module_category_reset_to_draft"/>
-    </record>
-
+    <!-- Odoo 18: res.groups.privilege yo'q; guruh to'g'ridan-to'g'ri kategoriyada
+         (base/models/res_users.py:191 — category_id) -->
     <record id="group_reset_to_draft_sale" model="res.groups">
         <field name="name">Reset to Draft — Sales</field>
-        <field name="privilege_id" ref="res_groups_privilege_reset_to_draft"/>
+        <field name="category_id" ref="module_category_reset_to_draft"/>
     </record>
 
     <record id="group_reset_to_draft_purchase" model="res.groups">
         <field name="name">Reset to Draft — Purchase</field>
-        <field name="privilege_id" ref="res_groups_privilege_reset_to_draft"/>
+        <field name="category_id" ref="module_category_reset_to_draft"/>
     </record>
 </odoo>

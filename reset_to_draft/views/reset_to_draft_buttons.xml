@@ -23,7 +23,7 @@
                 <button name="action_open_reset_to_draft_wizard" type="object"
                         string="Reset to Draft"
                         groups="reset_to_draft.group_reset_to_draft_purchase"
-                        invisible="state != 'purchase'"/>
+                        invisible="state not in ('purchase', 'done')"/>
             </xpath>
         </field>
     </record>

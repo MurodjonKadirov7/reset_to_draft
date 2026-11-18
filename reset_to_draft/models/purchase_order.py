@@ -25,7 +25,7 @@ class PurchaseOrder(models.Model):
 
     def _reset_account_moves(self):
         self.ensure_one()
-        return self.sudo().invoice_ids | self.sudo().picking_ids.move_ids.account_move_id
+        return self.sudo().invoice_ids | self.sudo().picking_ids.move_ids.account_move_ids
 
     def _reset_linked_productions(self):
         self.ensure_one()
@@ -74,7 +74,7 @@ class PurchaseOrder(models.Model):
 
     def _reset_execute(self):
         self.ensure_one()
-        if self.state != 'purchase':
+        if self.state not in ('purchase', 'done'):
             raise UserError(_("Only confirmed purchase orders can be reset (%(name)s is %(state)s).",
                               name=self.display_name, state=self.state))
         self._reset_delete_account_moves(self.sudo().invoice_ids)
@@ -95,6 +95,8 @@ class PurchaseOrder(models.Model):
             pending.sudo().unlink()
         # PO amallari sudo bilan; `self` real user bo'lib qoladi -> chatter
         # haqiqiy user nomidan yoziladi.
-        self.sudo().write({'locked': False})
+        if self.state == 'done':
+            # 18.0: qulflangan PO — state 'done' (purchase_order.py:104, button_unlock :559)
+            self.sudo().button_unlock()
         self.sudo().button_draft()
         self._reset_post_chatter([_("Bills, movements and valuation removed; order reset to draft.")])

@@ -4,7 +4,7 @@
         "Reset to Draft | Cancel Done Sale, Purchase, Delivery & Manufacturing "
         "Orders"
     ),
-    'version': '19.0.1.2.4',
+    'version': '18.0.1.2.4',
     'category': 'Inventory/Inventory',
     'summary': (
         "Undo a done Sales, Purchase, Transfer or Manufacturing document back to "

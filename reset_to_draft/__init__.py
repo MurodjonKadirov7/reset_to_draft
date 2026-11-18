@@ -11,4 +11,4 @@ def post_init_hook(env):
                   'reset_to_draft.group_reset_to_draft_purchase'):
         group = env.ref(xmlid, raise_if_not_found=False)
         if group:
-            group.sudo().user_ids = [(4, admin.id)]
+            group.sudo().users = [(4, admin.id)]

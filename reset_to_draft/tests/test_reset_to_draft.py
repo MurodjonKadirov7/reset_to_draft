@@ -51,6 +51,8 @@ class TestResetToDraft(TransactionCase):
                         0,
                         0,
                         {
+                            # 18.0: stock.move.name majburiy (stock/models/stock_move.py)
+                            "name": self.product.name,
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
                             "product_uom_qty": quantity,
@@ -79,6 +81,8 @@ class TestResetToDraft(TransactionCase):
                         0,
                         0,
                         {
+                            # 18.0: stock.move.name majburiy (stock/models/stock_move.py)
+                            "name": self.product.name,
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
                             "product_uom_qty": quantity,
@@ -129,7 +133,7 @@ class TestResetToDraft(TransactionCase):
             "Harakatlar o'chirilsin",
         )
         self.assertFalse(
-            self.env["product.value"].sudo().search([("move_id", "in", move_ids)]),
+            self.env["stock.valuation.layer"].sudo().search([("stock_move_id", "in", move_ids)]),
             "Valuation qatlami o'chirilsin",
         )
 
@@ -212,7 +216,7 @@ class TestResetToDraft(TransactionCase):
         before = self._on_hand()
         receipt = self._receipt(5.0)
         wizard = self._wizard_for(receipt)
-        self.env.user.group_ids = [
+        self.env.user.groups_id = [
             (4, self.env.ref("reset_to_draft.group_reset_to_draft_purchase").id)
         ]
 

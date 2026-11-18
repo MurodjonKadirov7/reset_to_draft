@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
 
     def _reset_account_moves(self):
         self.ensure_one()
-        return self.sudo().invoice_ids | self.sudo().picking_ids.move_ids.account_move_id
+        return self.sudo().invoice_ids | self.sudo().picking_ids.move_ids.account_move_ids
 
     def _reset_detect_blockers(self):
         blockers = super()._reset_detect_blockers()

@@ -9,7 +9,9 @@ Reset a validated transfer back to draft, reverting stock and removing the movem
 ## Branches
 
 - `main` - Documentation
+- `18.0` - Odoo 18 module
 - `19.0` - Odoo 19 module
+- `20.0` - Odoo 20 module
 
 ## Installation
 

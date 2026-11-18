@@ -3,7 +3,7 @@ from markupsafe import Markup
 
 from odoo import _, models
 from odoo.exceptions import UserError
-from odoo.tools import float_compare
+from odoo.tools import float_compare, float_is_zero
 
 
 class ResetToDraftMixin(models.AbstractModel):
@@ -82,10 +82,10 @@ class ResetToDraftMixin(models.AbstractModel):
         """Receipt/kirim move'ni qaytarish MANFIY qoldiq bermasligini tekshiradi.
         Agar kelgan tovar allaqachon keyingi bosqichga o'tgan bo'lsa (dest
         joyda yetarli qoldiq yo'q) — bloklaymiz, aks holda ombor manfiyga
-        tushardi. Manba: stock_quant.py:793 (_get_available_quantity)."""
+        tushardi. Manba: stock_quant.py:811 (_get_available_quantity)."""
         Quant = self.env['stock.quant'].sudo()
-        # Odoo 19'da precision nomi 'Product Unit' (uom/data/uom_data.xml)
-        prec = self.env['decimal.precision'].precision_get('Product Unit')
+        # Odoo 18'da precision nomi 'Product Unit of Measure' (product/data/product_data.xml:36)
+        prec = self.env['decimal.precision'].precision_get('Product Unit of Measure')
         blockers = []
         for line in moves.sudo().move_line_ids:
             qty = line.quantity_product_uom
@@ -105,6 +105,70 @@ class ResetToDraftMixin(models.AbstractModel):
                         product=line.product_id.display_name, avail=avail,
                         loc=line.location_dest_id.display_name, qty=qty),
                 })
+        blockers += self._reset_valuation_blockers(moves)
+        return blockers
+
+    def _reset_valuation_blockers(self, moves):
+        """Odoo 18: qatlamlarni o'chirish faqat ANIQ natija beradigan holda ruxsat.
+
+        18.0 da har bir chiqim `_run_fifo` orqali kirim qatlamlarining
+        remaining_qty/remaining_value'sini kamaytiradi (FIFO ham, AVCO ham —
+        stock_account/models/product.py:286), qaysi qatlamdan qancha olingani
+        esa yozilmaydi. FIFO/AVCO'da keyingi chiqim (yoki qo'lda qayta baholash)
+        shu qatlamlar ustiga qiymatlangan bo'ladi — ularni o'chirish keyingi
+        hujjat tannarxini buzadi. Shunday holatlarni bloklaymiz:
+        - lot bo'yicha baholanadigan mahsulot (lot_valuated);
+        - manfiy qoldiq (remaining_qty < 0, hali vacuum qilinmagan);
+        - shu qatlamlardan KEYIN shu mahsulot bo'yicha chiqim/qayta baholash bor.
+        Standard narxda chiqim qiymati tarixga bog'liq emas — cheklov yo'q.
+        """
+        Layer = self.env['stock.valuation.layer'].sudo()
+        blockers = []
+        groups = {}
+        for layer in moves.sudo().stock_valuation_layer_ids:
+            key = (layer.product_id, layer.company_id)
+            groups[key] = groups.get(key, Layer) | layer
+        for (product, company), own in groups.items():
+            product = product.with_company(company)
+            first_move = own[:1].stock_move_id
+            if product.lot_valuated:
+                blockers.append({
+                    'record': first_move.picking_id or first_move,
+                    'reason': _(
+                        "%(product)s is valued per lot/serial number — resetting its "
+                        "movements is not supported.",
+                        product=product.display_name),
+                })
+                continue
+            if product.cost_method not in ('average', 'fifo'):
+                continue
+            rounding = product.uom_id.rounding
+            history = Layer.search([('product_id', '=', product.id), ('company_id', '=', company.id)])
+            if any(float_compare(layer.remaining_qty, 0, precision_rounding=rounding) < 0 for layer in history):
+                blockers.append({
+                    'record': first_move.picking_id or first_move,
+                    'reason': _(
+                        "%(product)s has a negative stock valuation that is not settled "
+                        "yet — receive the missing quantity first.",
+                        product=product.display_name),
+                })
+                continue
+            last = max(own, key=lambda layer: (layer.create_date, layer.id))
+            later = (history - own).filtered(
+                lambda layer: (layer.create_date, layer.id) > (last.create_date, last.id)
+                and (float_compare(layer.quantity, 0, precision_rounding=rounding) < 0
+                     or (float_is_zero(layer.quantity, precision_rounding=rounding)
+                         and not layer.stock_valuation_layer_id)))
+            if later:
+                move = later[0].stock_move_id
+                doc = (move.picking_id or move).display_name or later[0].description
+                blockers.append({
+                    'record': move.picking_id or move or later[0],
+                    'reason': _(
+                        "%(product)s: %(doc)s was valued after this document with "
+                        "FIFO/AVCO costing, so its cost depends on it. Reset %(doc)s first.",
+                        product=product.display_name, doc=doc),
+                })
         return blockers
 
     def _reset_execute(self):
@@ -118,16 +182,10 @@ class ResetToDraftMixin(models.AbstractModel):
         # (real user) orqali yoziladi, shuning uchun log'da haqiqiy user ko'rinadi.
         moves = moves.sudo()
         # Avval to'lov bog'ini uzamiz — payment posted qoladi (o'chmaydi/qaytmaydi),
-        # invoice/bill esa keyin o'chadi. Manba: account_move.py:4059 (unlink ham
-        # remove_move_reconcile chaqiradi; buni oldindan qilib toza uzamiz).
+        # invoice/bill esa keyin o'chadi. Manba: account_move.py:5617 (button_draft
+        # ham remove_move_reconcile chaqiradi; buni oldindan qilib toza uzamiz).
         moves.line_ids.remove_move_reconcile()
         posted = moves.filtered(lambda m: m.state == 'posted')
-        # Enterprise review guard: posted+checked move'ni draft qilishda
-        # "Validated entries can only be changed by your accountant" beradi
-        # (account_move.py:3901 -> _is_user_able_to_review; sudo env.user'ni
-        # o'zgartirmaydi, shuning uchun bypass qilmaydi). checked=False qilib
-        # nazoratlangan reset ichida shu tekshiruvni o'tkazamiz.
-        posted.checked = False
         posted.with_context(force_delete=True).button_draft()
         moves.with_context(force_delete=True).unlink()
 
@@ -150,16 +208,60 @@ class ResetToDraftMixin(models.AbstractModel):
         if not moves:
             return
         moves = moves.sudo()
-        move_ids = moves.ids
-        products = moves.product_id
+        pairs = {(move.product_id, move.company_id) for move in moves}
+        # Odoo 18: valuation = stock.valuation.layer (stock_account/models/
+        # stock_valuation_layer.py:16); bog'langan tuzatish qatlamlari ham
+        # (stock_valuation_layer_id, masalan landed cost) shu harakatga tegishli.
+        layers = moves.stock_valuation_layer_ids
+        layers |= layers.stock_valuation_layer_ids
         self._reset_revert_quants(moves)
-        self._reset_delete_account_moves(moves.account_move_id)
-        # product.value = Odoo 19'dagi valuation qatlami (eski stock.valuation.layer)
-        self.env['product.value'].sudo().search([('move_id', 'in', move_ids)]).unlink()
+        # 18.0: stock.move.account_move_ids (stock_account/models/stock_move.py:19)
+        self._reset_delete_account_moves(moves.account_move_ids | layers.account_move_id)
+        layers.unlink()
         moves.analytic_account_line_ids.unlink()
         moves.write({'state': 'draft'})
         moves.unlink()
-        products.sudo()._update_standard_price()
+        self._reset_rebuild_valuation(pairs)
+
+    def _reset_rebuild_valuation(self, pairs):
+        """Qatlamlar o'chgach FIFO qoldig'ini va o'rtacha tannarxni tiklaydi.
+
+        Chiqim qatlami o'chganda u "yegan" kirim qatlamlarining remaining_qty'si
+        qaytishi kerak, lekin 18.0 qaysi qatlamdan olinganini saqlamaydi. FIFO
+        har doim eng eski qatlamdan oladi (_run_fifo, _order='create_date, id'),
+        demak qolgan miqdor doim ENG YANGI kirim qatlamlarida turadi: jami
+        miqdorni yangidan eskiga qarab taqsimlaymiz — bu aynan FIFO holati.
+        Keyingi chiqimlar bo'lsa reset bloklangan (_reset_valuation_blockers),
+        shuning uchun natija operatsiyadan oldingi holat bilan bir xil.
+        Narx: qatlamda qoldiq bo'lsa uning joriy birlik qiymati (landed cost
+        kabi tuzatishlar bilan), bo'lmasa qatlamning o'z birlik qiymati.
+        O'rtacha tannarx — core idiomasi (stock_account/models/product.py:565).
+        """
+        Layer = self.env['stock.valuation.layer'].sudo()
+        for product, company in pairs:
+            product = product.sudo().with_company(company)
+            rounding = product.uom_id.rounding
+            currency = company.currency_id
+            history = Layer.search([('product_id', '=', product.id), ('company_id', '=', company.id)])
+            left = sum(history.mapped('quantity'))
+            incoming = history.filtered(
+                lambda layer: float_compare(layer.quantity, 0, precision_rounding=rounding) > 0)
+            for layer in reversed(incoming):
+                qty = max(0.0, min(layer.quantity, left))
+                left -= qty
+                if float_compare(layer.remaining_qty, 0, precision_rounding=rounding) > 0:
+                    unit = layer.remaining_value / layer.remaining_qty
+                else:
+                    unit = (layer.value + sum(layer.stock_valuation_layer_ids.mapped('value'))) / layer.quantity
+                value = currency.round(qty * unit)
+                if (float_compare(layer.remaining_qty, qty, precision_rounding=rounding)
+                        or currency.compare_amounts(layer.remaining_value, value)):
+                    layer.write({'remaining_qty': qty, 'remaining_value': value})
+            product.invalidate_recordset(['value_svl', 'quantity_svl'])
+            if (product.cost_method in ('average', 'fifo')
+                    and not float_is_zero(product.quantity_svl, precision_rounding=rounding)):
+                product.with_context(disable_auto_svl=True).write(
+                    {'standard_price': product.value_svl / product.quantity_svl})
 
     def _reset_post_chatter(self, lines):
         body = Markup("<p><b>%s</b></p>") % _("Reset to Draft")
