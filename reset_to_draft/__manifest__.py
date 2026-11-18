@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Reset to Draft',
+    'name': (
+        "Reset to Draft | Cancel Done Sale, Purchase, Delivery & Manufacturing "
+        "Orders"
+    ),
     'version': '19.0.1.2.4',
     'category': 'Inventory/Inventory',
-    'summary': 'Undo a done Sales, Purchase, Transfer or Manufacturing document '
-               'back to draft — movements, valuation and entries removed, stock reverted',
+    'summary': (
+        "Undo a done Sales, Purchase, Transfer or Manufacturing document back to "
+        "draft: stock moves, valuation and journal entries removed, stock "
+        "reverted. Reset to draft, cancel sale order, cancel purchase order, "
+        "cancel delivery order, cancel picking, cancel done transfer, cancel "
+        "manufacturing order, reverse stock valuation, undo validated transfer."
+    ),
     'description': """
 Reset to Draft
 ==============
