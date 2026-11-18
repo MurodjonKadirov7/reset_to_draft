@@ -52,7 +52,7 @@ class TestResetToDraft(TransactionCase):
                         0,
                         {
                             "product_id": self.product.id,
-                            "product_uom": self.product.uom_id.id,
+                            "uom_id": self.product.uom_id.id,
                             "product_uom_qty": quantity,
                             "location_id": self.supplier_location.id,
                             "location_dest_id": self.stock_location.id,
@@ -80,7 +80,7 @@ class TestResetToDraft(TransactionCase):
                         0,
                         {
                             "product_id": self.product.id,
-                            "product_uom": self.product.uom_id.id,
+                            "uom_id": self.product.uom_id.id,
                             "product_uom_qty": quantity,
                             "location_id": self.stock_location.id,
                             "location_dest_id": self.customer_location.id,

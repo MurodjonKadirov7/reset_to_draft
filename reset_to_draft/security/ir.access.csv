@@ -1,0 +1,7 @@
+id,name,model_id,group_id/id,operation,domain
+access_reset_to_draft_wizard_sale,reset.to.draft.wizard.sale,reset.to.draft.wizard,reset_to_draft.group_reset_to_draft_sale,crud,
+access_reset_to_draft_wizard_purchase,reset.to.draft.wizard.purchase,reset.to.draft.wizard,reset_to_draft.group_reset_to_draft_purchase,crud,
+access_reset_to_draft_wizard_line_sale,reset.to.draft.wizard.line.sale,reset.to.draft.wizard.line,reset_to_draft.group_reset_to_draft_sale,crud,
+access_reset_to_draft_wizard_line_purchase,reset.to.draft.wizard.line.purchase,reset.to.draft.wizard.line,reset_to_draft.group_reset_to_draft_purchase,crud,
+access_reset_to_draft_wizard_blocker_sale,reset.to.draft.wizard.blocker.sale,reset.to.draft.wizard.blocker,reset_to_draft.group_reset_to_draft_sale,crud,
+access_reset_to_draft_wizard_blocker_purchase,reset.to.draft.wizard.blocker.purchase,reset.to.draft.wizard.blocker,reset_to_draft.group_reset_to_draft_purchase,crud,

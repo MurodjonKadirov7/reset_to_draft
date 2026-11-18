@@ -105,4 +105,6 @@ class ResetToDraftWizardBlocker(models.TransientModel):
 
     wizard_id = fields.Many2one('reset.to.draft.wizard', ondelete='cascade')
     document = fields.Char(readonly=True)
-    reason = fields.Char(readonly=True)
+    # Text: ro'yxatda uzun sabab qatorga o'raladi (o_list_text,
+    # web/static/src/views/list/list_renderer.scss:144); Char kesib qo'yadi.
+    reason = fields.Text(readonly=True)

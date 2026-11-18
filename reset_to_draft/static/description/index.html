@@ -1,5 +1,5 @@
 <section class="oe_container">
-  <div class="oe_row" style="background:#005E7A;border-radius:14px;padding:48px 40px;margin-bottom:32px;">
+  <div class="oe_row" style="background-color:#005E7A;border-radius:14px;padding:48px 40px;margin-bottom:32px;">
     <h1 style="color:#fff;font-size:44px;font-weight:700;margin:0 0 12px;">Reset to Draft</h1>
     <h3 style="color:#A8D8E4;font-weight:400;margin:0 0 20px;">Undo a done document &mdash; stock, valuation and accounting entries</h3>
     <p style="color:#E8F4F7;font-size:17px;line-height:1.7;max-width:860px;margin:0 0 24px;">
@@ -9,10 +9,10 @@
       the document back to draft &mdash; after showing you exactly what will be removed.
     </p>
     <div>
-      <span style="display:inline-block;background:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Odoo 19</span>
-      <span style="display:inline-block;background:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Confirmation wizard</span>
-      <span style="display:inline-block;background:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Lock date safe</span>
-      <span style="display:inline-block;background:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Sales &middot; Purchase &middot; Stock &middot; MRP</span>
+      <span style="display:inline-block;background-color:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Odoo 20</span>
+      <span style="display:inline-block;background-color:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Confirmation wizard</span>
+      <span style="display:inline-block;background-color:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Lock date safe</span>
+      <span style="display:inline-block;background-color:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Sales &middot; Purchase &middot; Stock &middot; MRP</span>
     </div>
   </div>
 </section>
@@ -21,7 +21,7 @@
   <h2 style="text-align:center;font-size:32px;font-weight:700;margin-bottom:28px;">Why this module</h2>
   <div class="row g-4" style="margin-bottom:40px;">
     <div class="col-md-6">
-      <div style="background:#fdf2f2;border-radius:12px;padding:28px;height:100%;">
+      <div style="background-color:#fdf2f2;border-radius:12px;padding:28px;height:100%;">
         <h4 style="color:#c0392b;font-weight:700;margin-bottom:16px;">Without it</h4>
         <ul style="line-height:2;color:#444;margin:0;padding-left:20px;">
           <li>A confirmed order cannot go back &mdash; only cancel</li>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div style="background:#005E7A;border-radius:12px;padding:28px;height:100%;">
+      <div style="background-color:#005E7A;border-radius:12px;padding:28px;height:100%;">
         <h4 style="color:#1AD3BB;font-weight:700;margin-bottom:16px;">With it</h4>
         <ul style="line-height:2;color:#E8F4F7;margin:0;padding-left:20px;">
           <li>One button, one wizard, the document is draft again</li>
@@ -110,13 +110,41 @@
 <section class="oe_container">
   <h2 style="text-align:center;font-size:32px;font-weight:700;margin-bottom:28px;">Screenshots</h2>
   <div style="margin-bottom:40px;">
+    <h4 style="color:#005E7A;font-weight:700;margin-bottom:6px;">A confirmed order, delivered and invoiced</h4>
+    <p style="color:#555;line-height:1.7;margin-bottom:14px;">
+      Three standing desks sold, shipped and invoiced. <b>Reset to Draft</b> sits in the header, next to the
+      standard buttons, for users of the Reset to Draft group only.
+    </p>
+    <img src="screenshots/01-order.png" alt="Confirmed sales order with the Reset to Draft button"
+         style="width:100%;border:1px solid #e5e8ea;border-radius:10px;"/>
+  </div>
+  <div style="margin-bottom:40px;">
     <h4 style="color:#005E7A;font-weight:700;margin-bottom:6px;">The wizard before anything happens</h4>
     <p style="color:#555;line-height:1.7;margin-bottom:14px;">
       Nothing is removed until this dialog is confirmed. It names every document in the chain &mdash;
       here the customer invoice, the delivery and the order itself &mdash; and says exactly what will
-      happen to each one. A second tab lists the blockers whenever a reset is refused.
+      happen to each one.
     </p>
     <img src="screenshots/02-wizard.png" alt="Reset to Draft confirmation wizard"
+         style="width:100%;border:1px solid #e5e8ea;border-radius:10px;"/>
+  </div>
+  <div style="margin-bottom:40px;">
+    <h4 style="color:#005E7A;font-weight:700;margin-bottom:6px;">Back to a quotation, with a note in the chatter</h4>
+    <p style="color:#555;line-height:1.7;margin-bottom:14px;">
+      The invoice and the delivery are gone, the three desks are back on hand, and the order is a
+      quotation again. The chatter records who reset it and what was removed.
+    </p>
+    <img src="screenshots/03-after-reset.png" alt="Sales order reset to quotation with the chatter note"
+         style="width:100%;border:1px solid #e5e8ea;border-radius:10px;"/>
+  </div>
+  <div style="margin-bottom:40px;">
+    <h4 style="color:#005E7A;font-weight:700;margin-bottom:6px;">When the goods have already moved on</h4>
+    <p style="color:#555;line-height:1.7;margin-bottom:14px;">
+      The purchase that brought ten desks in cannot be undone any more: five of them were sold and
+      delivered since. The wizard says so, names the receipt, and offers no reset button until the later
+      step is reset first.
+    </p>
+    <img src="screenshots/04-blocked.png" alt="Reset refused with a blocker on the receipt"
          style="width:100%;border:1px solid #e5e8ea;border-radius:10px;"/>
   </div>
 </section>
@@ -125,17 +153,17 @@
   <h2 style="text-align:center;font-size:32px;font-weight:700;margin-bottom:28px;">When the reset is refused</h2>
   <div style="overflow-x:auto;margin-bottom:40px;">
     <table class="table" style="margin:0;">
-      <thead style="background:#005E7A;color:#fff;">
+      <thead style="background-color:#005E7A;color:#fff;">
         <tr><th style="padding:12px 16px;">Blocker</th><th style="padding:12px 16px;">Why</th></tr>
       </thead>
       <tbody>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Locked period</b></td><td style="padding:12px 16px;">The journal entry&rsquo;s date falls inside a lock date. Accounting that is closed stays closed.</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Locked period</b></td><td style="padding:12px 16px;">The journal entry&rsquo;s date falls inside a lock date. Accounting that is closed stays closed.</td></tr>
         <tr><td style="padding:12px 16px;"><b>Hash-locked entry</b></td><td style="padding:12px 16px;">The entry carries an inalterable hash and may not be removed, by design.</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Shared invoice or bill</b></td><td style="padding:12px 16px;">The document was merged with another order. Removing it would break that other order.</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Shared invoice or bill</b></td><td style="padding:12px 16px;">The document was merged with another order. Removing it would break that other order.</td></tr>
         <tr><td style="padding:12px 16px;"><b>Goods already moved on</b></td><td style="padding:12px 16px;">The destination no longer holds the quantity to give back. Reset the later step first.</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Validated landed cost</b></td><td style="padding:12px 16px;">A landed cost is posted on the transfer. Cancel it, then reset.</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Validated landed cost</b></td><td style="padding:12px 16px;">A landed cost is posted on the transfer. Cancel it, then reset.</td></tr>
         <tr><td style="padding:12px 16px;"><b>Linked manufacturing</b></td><td style="padding:12px 16px;">The order feeds a done manufacturing order. That one is reset first.</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Multi-lot production</b></td><td style="padding:12px 16px;">More than one lot or serial was produced. Those are handled one by one, by hand.</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Multi-lot production</b></td><td style="padding:12px 16px;">More than one lot or serial was produced. Those are handled one by one, by hand.</td></tr>
       </tbody>
     </table>
   </div>
@@ -146,28 +174,28 @@
   <div class="row g-4" style="margin-bottom:40px;">
     <div class="col-md-3">
       <div style="text-align:center;padding:16px;">
-        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">1</div>
+        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background-color:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">1</div>
         <h5 style="font-weight:700;">Open the document</h5>
         <p style="color:#555;line-height:1.7;">A confirmed order, a done transfer or a done manufacturing order. Press <b>Reset to Draft</b> in the header, or pick several in the list view.</p>
       </div>
     </div>
     <div class="col-md-3">
       <div style="text-align:center;padding:16px;">
-        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">2</div>
+        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background-color:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">2</div>
         <h5 style="font-weight:700;">Read what goes away</h5>
         <p style="color:#555;line-height:1.7;">The wizard lists every document in the chain and what will happen to it &mdash; entry deleted, movements removed, stock reverted.</p>
       </div>
     </div>
     <div class="col-md-3">
       <div style="text-align:center;padding:16px;">
-        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">3</div>
+        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background-color:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">3</div>
         <h5 style="font-weight:700;">Check the blockers</h5>
         <p style="color:#555;line-height:1.7;">If anything stands in the way it appears on its own tab with the reason, and the confirm button is hidden.</p>
       </div>
     </div>
     <div class="col-md-3">
       <div style="text-align:center;padding:16px;">
-        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">4</div>
+        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background-color:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">4</div>
         <h5 style="font-weight:700;">Confirm</h5>
         <p style="color:#555;line-height:1.7;">Blockers are re-checked, the chain is undone inside one savepoint, the chatter records it, and the document is draft.</p>
       </div>
@@ -180,20 +208,20 @@
   <div style="overflow-x:auto;margin-bottom:40px;">
     <table class="table" style="margin:0;">
       <tbody>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;width:30%;"><b>Odoo version</b></td><td style="padding:12px 16px;">19.0 (Community and Enterprise)</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;width:30%;"><b>Odoo version</b></td><td style="padding:12px 16px;">20.0 (Community and Enterprise)</td></tr>
         <tr><td style="padding:12px 16px;"><b>Depends on</b></td><td style="padding:12px 16px;">sale, sale_stock, sale_mrp, purchase, purchase_stock, stock, stock_account, mrp, account, mail</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Models added</b></td><td style="padding:12px 16px;">reset.to.draft.mixin (abstract), reset.to.draft.wizard and its two line models (transient)</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Models added</b></td><td style="padding:12px 16px;">reset.to.draft.mixin (abstract), reset.to.draft.wizard and its two line models (transient)</td></tr>
         <tr><td style="padding:12px 16px;"><b>Models extended</b></td><td style="padding:12px 16px;">sale.order, purchase.order, stock.picking, mrp.production &mdash; through the mixin, no core method is overridden</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Security</b></td><td style="padding:12px 16px;">Two groups under a dedicated privilege, access rules per group, and a second check inside the wizard</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Security</b></td><td style="padding:12px 16px;">Two groups under a dedicated privilege, access rules per group, and a second check inside the wizard</td></tr>
         <tr><td style="padding:12px 16px;"><b>Languages</b></td><td style="padding:12px 16px;">English, Russian, Uzbek</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Tests</b></td><td style="padding:12px 16px;">12 automated tests covering stock revert, movement removal, chatter, blockers, the wizard and both access groups</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Tests</b></td><td style="padding:12px 16px;">12 automated tests covering stock revert, movement removal, chatter, blockers, the wizard and both access groups</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
 <section class="oe_container">
-  <div style="background:#005E7A;border-radius:14px;padding:40px;text-align:center;">
+  <div style="background-color:#005E7A;border-radius:14px;padding:40px;text-align:center;">
     <h3 style="color:#fff;font-weight:700;margin-bottom:12px;">todoo.uz</h3>
     <p style="color:#A8D8E4;margin-bottom:6px;">Odoo implementation and custom development</p>
     <p style="color:#E8F4F7;margin:0;">Support: <a href="mailto:info@todoo.uz" style="color:#1AD3BB;">info@todoo.uz</a></p>
@@ -204,7 +232,7 @@
 <section class="oe_container">
   <div style="margin:40px 0 24px;">
     <h2 style="text-align:center;font-size:30px;font-weight:700;margin-bottom:8px;">More apps by todoo.uz</h2>
-    <p style="text-align:center;color:#6b7280;margin-bottom:24px;">Odoo 19 apps for inventory, accounting, sales, HR and integrations &mdash; questions and custom development: <a href="mailto:info@todoo.uz" style="color:#714B67;">info@todoo.uz</a></p>
+    <p style="text-align:center;color:#6b7280;margin-bottom:24px;">Odoo apps for inventory, accounting, sales, HR and integrations &mdash; questions and custom development: <a href="mailto:info@todoo.uz" style="color:#714B67;">info@todoo.uz</a></p>
     <div class="row g-3">
       <div class="col-md-6 col-lg-4">
         <a href="https://apps.odoo.com/apps/modules/19.0/wh3d_truck" target="_blank" rel="noopener" style="display:block;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;height:100%;text-decoration:none;color:#1f2937;">

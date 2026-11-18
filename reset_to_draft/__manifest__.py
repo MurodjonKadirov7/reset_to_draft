@@ -4,7 +4,7 @@
         "Reset to Draft | Cancel Done Sale, Purchase, Delivery & Manufacturing "
         "Orders"
     ),
-    'version': '19.0.1.2.4',
+    'version': '20.0.1.2.4',
     'category': 'Inventory/Inventory',
     'summary': (
         "Undo a done Sales, Purchase, Transfer or Manufacturing document back to "
@@ -88,7 +88,7 @@ guarded by group, lock date and hash.
     ],
     'data': [
         'security/reset_to_draft_security.xml',
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'wizard/reset_to_draft_wizard_views.xml',
         'views/reset_to_draft_buttons.xml',
         'views/reset_to_draft_actions.xml',

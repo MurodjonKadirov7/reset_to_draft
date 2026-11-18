@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_reset_to_draft_wizard_sale,reset.to.draft.wizard.sale,model_reset_to_draft_wizard,reset_to_draft.group_reset_to_draft_sale,1,1,1,1
-access_reset_to_draft_wizard_purchase,reset.to.draft.wizard.purchase,model_reset_to_draft_wizard,reset_to_draft.group_reset_to_draft_purchase,1,1,1,1
-access_reset_to_draft_wizard_line_sale,reset.to.draft.wizard.line.sale,model_reset_to_draft_wizard_line,reset_to_draft.group_reset_to_draft_sale,1,1,1,1
-access_reset_to_draft_wizard_line_purchase,reset.to.draft.wizard.line.purchase,model_reset_to_draft_wizard_line,reset_to_draft.group_reset_to_draft_purchase,1,1,1,1
-access_reset_to_draft_wizard_blocker_sale,reset.to.draft.wizard.blocker.sale,model_reset_to_draft_wizard_blocker,reset_to_draft.group_reset_to_draft_sale,1,1,1,1
-access_reset_to_draft_wizard_blocker_purchase,reset.to.draft.wizard.blocker.purchase,model_reset_to_draft_wizard_blocker,reset_to_draft.group_reset_to_draft_purchase,1,1,1,1

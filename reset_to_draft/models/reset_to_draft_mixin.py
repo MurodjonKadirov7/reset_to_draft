@@ -82,9 +82,9 @@ class ResetToDraftMixin(models.AbstractModel):
         """Receipt/kirim move'ni qaytarish MANFIY qoldiq bermasligini tekshiradi.
         Agar kelgan tovar allaqachon keyingi bosqichga o'tgan bo'lsa (dest
         joyda yetarli qoldiq yo'q) — bloklaymiz, aks holda ombor manfiyga
-        tushardi. Manba: stock_quant.py:793 (_get_available_quantity)."""
+        tushardi. Manba: stock_quant.py:825 (_get_available_quantity)."""
         Quant = self.env['stock.quant'].sudo()
-        # Odoo 19'da precision nomi 'Product Unit' (uom/data/uom_data.xml)
+        # Odoo 19+ da precision nomi 'Product Unit' (uom/data/uom_data.xml:6)
         prec = self.env['decimal.precision'].precision_get('Product Unit')
         blockers = []
         for line in moves.sudo().move_line_ids:
@@ -118,16 +118,13 @@ class ResetToDraftMixin(models.AbstractModel):
         # (real user) orqali yoziladi, shuning uchun log'da haqiqiy user ko'rinadi.
         moves = moves.sudo()
         # Avval to'lov bog'ini uzamiz — payment posted qoladi (o'chmaydi/qaytmaydi),
-        # invoice/bill esa keyin o'chadi. Manba: account_move.py:4059 (unlink ham
+        # invoice/bill esa keyin o'chadi. Manba: account_move.py:4204 (unlink ham
         # remove_move_reconcile chaqiradi; buni oldindan qilib toza uzamiz).
         moves.line_ids.remove_move_reconcile()
         posted = moves.filtered(lambda m: m.state == 'posted')
-        # Enterprise review guard: posted+checked move'ni draft qilishda
-        # "Validated entries can only be changed by your accountant" beradi
-        # (account_move.py:3901 -> _is_user_able_to_review; sudo env.user'ni
-        # o'zgartirmaydi, shuning uchun bypass qilmaydi). checked=False qilib
-        # nazoratlangan reset ichida shu tekshiruvni o'tkazamiz.
-        posted.checked = False
+        # Odoo 20: `checked` o'rniga `review_state`. Draft qilishdagi tekshiruv
+        # (_check_review_state_access) sudo'da o'tkazib yuboriladi
+        # (account_move.py:3921 — `if self.env.su ... return`), `moves` esa sudo.
         posted.with_context(force_delete=True).button_draft()
         moves.with_context(force_delete=True).unlink()
 
@@ -154,7 +151,7 @@ class ResetToDraftMixin(models.AbstractModel):
         products = moves.product_id
         self._reset_revert_quants(moves)
         self._reset_delete_account_moves(moves.account_move_id)
-        # product.value = Odoo 19'dagi valuation qatlami (eski stock.valuation.layer)
+        # product.value = valuation qatlami (stock_account/models/product_value.py:14)
         self.env['product.value'].sudo().search([('move_id', 'in', move_ids)]).unlink()
         moves.analytic_account_line_ids.unlink()
         moves.write({'state': 'draft'})
