@@ -1,5 +1,5 @@
 <section class="oe_container">
-  <div class="oe_row" style="background:#005E7A;border-radius:14px;padding:48px 40px;margin-bottom:32px;">
+  <div class="oe_row" style="background-color:#005E7A;border-radius:14px;padding:48px 40px;margin-bottom:32px;">
     <h1 style="color:#fff;font-size:44px;font-weight:700;margin:0 0 12px;">Reset to Draft</h1>
     <h3 style="color:#A8D8E4;font-weight:400;margin:0 0 20px;">Undo a done document &mdash; stock, valuation and accounting entries</h3>
     <p style="color:#E8F4F7;font-size:17px;line-height:1.7;max-width:860px;margin:0 0 24px;">
@@ -9,10 +9,10 @@
       the document back to draft &mdash; after showing you exactly what will be removed.
     </p>
     <div>
-      <span style="display:inline-block;background:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Odoo 19</span>
-      <span style="display:inline-block;background:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Confirmation wizard</span>
-      <span style="display:inline-block;background:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Lock date safe</span>
-      <span style="display:inline-block;background:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Sales &middot; Purchase &middot; Stock &middot; MRP</span>
+      <span style="display:inline-block;background-color:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Odoo 19</span>
+      <span style="display:inline-block;background-color:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Confirmation wizard</span>
+      <span style="display:inline-block;background-color:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Lock date safe</span>
+      <span style="display:inline-block;background-color:rgba(26,211,187,.22);color:#fff;padding:8px 18px;border-radius:20px;margin:0 8px 8px 0;font-size:15px;">Sales &middot; Purchase &middot; Stock &middot; MRP</span>
     </div>
   </div>
 </section>
@@ -21,7 +21,7 @@
   <h2 style="text-align:center;font-size:32px;font-weight:700;margin-bottom:28px;">Why this module</h2>
   <div class="row g-4" style="margin-bottom:40px;">
     <div class="col-md-6">
-      <div style="background:#fdf2f2;border-radius:12px;padding:28px;height:100%;">
+      <div style="background-color:#fdf2f2;border-radius:12px;padding:28px;height:100%;">
         <h4 style="color:#c0392b;font-weight:700;margin-bottom:16px;">Without it</h4>
         <ul style="line-height:2;color:#444;margin:0;padding-left:20px;">
           <li>A confirmed order cannot go back &mdash; only cancel</li>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div style="background:#005E7A;border-radius:12px;padding:28px;height:100%;">
+      <div style="background-color:#005E7A;border-radius:12px;padding:28px;height:100%;">
         <h4 style="color:#1AD3BB;font-weight:700;margin-bottom:16px;">With it</h4>
         <ul style="line-height:2;color:#E8F4F7;margin:0;padding-left:20px;">
           <li>One button, one wizard, the document is draft again</li>
@@ -125,17 +125,17 @@
   <h2 style="text-align:center;font-size:32px;font-weight:700;margin-bottom:28px;">When the reset is refused</h2>
   <div style="overflow-x:auto;margin-bottom:40px;">
     <table class="table" style="margin:0;">
-      <thead style="background:#005E7A;color:#fff;">
+      <thead style="background-color:#005E7A;color:#fff;">
         <tr><th style="padding:12px 16px;">Blocker</th><th style="padding:12px 16px;">Why</th></tr>
       </thead>
       <tbody>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Locked period</b></td><td style="padding:12px 16px;">The journal entry&rsquo;s date falls inside a lock date. Accounting that is closed stays closed.</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Locked period</b></td><td style="padding:12px 16px;">The journal entry&rsquo;s date falls inside a lock date. Accounting that is closed stays closed.</td></tr>
         <tr><td style="padding:12px 16px;"><b>Hash-locked entry</b></td><td style="padding:12px 16px;">The entry carries an inalterable hash and may not be removed, by design.</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Shared invoice or bill</b></td><td style="padding:12px 16px;">The document was merged with another order. Removing it would break that other order.</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Shared invoice or bill</b></td><td style="padding:12px 16px;">The document was merged with another order. Removing it would break that other order.</td></tr>
         <tr><td style="padding:12px 16px;"><b>Goods already moved on</b></td><td style="padding:12px 16px;">The destination no longer holds the quantity to give back. Reset the later step first.</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Validated landed cost</b></td><td style="padding:12px 16px;">A landed cost is posted on the transfer. Cancel it, then reset.</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Validated landed cost</b></td><td style="padding:12px 16px;">A landed cost is posted on the transfer. Cancel it, then reset.</td></tr>
         <tr><td style="padding:12px 16px;"><b>Linked manufacturing</b></td><td style="padding:12px 16px;">The order feeds a done manufacturing order. That one is reset first.</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Multi-lot production</b></td><td style="padding:12px 16px;">More than one lot or serial was produced. Those are handled one by one, by hand.</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Multi-lot production</b></td><td style="padding:12px 16px;">More than one lot or serial was produced. Those are handled one by one, by hand.</td></tr>
       </tbody>
     </table>
   </div>
@@ -146,28 +146,28 @@
   <div class="row g-4" style="margin-bottom:40px;">
     <div class="col-md-3">
       <div style="text-align:center;padding:16px;">
-        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">1</div>
+        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background-color:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">1</div>
         <h5 style="font-weight:700;">Open the document</h5>
         <p style="color:#555;line-height:1.7;">A confirmed order, a done transfer or a done manufacturing order. Press <b>Reset to Draft</b> in the header, or pick several in the list view.</p>
       </div>
     </div>
     <div class="col-md-3">
       <div style="text-align:center;padding:16px;">
-        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">2</div>
+        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background-color:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">2</div>
         <h5 style="font-weight:700;">Read what goes away</h5>
         <p style="color:#555;line-height:1.7;">The wizard lists every document in the chain and what will happen to it &mdash; entry deleted, movements removed, stock reverted.</p>
       </div>
     </div>
     <div class="col-md-3">
       <div style="text-align:center;padding:16px;">
-        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">3</div>
+        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background-color:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">3</div>
         <h5 style="font-weight:700;">Check the blockers</h5>
         <p style="color:#555;line-height:1.7;">If anything stands in the way it appears on its own tab with the reason, and the confirm button is hidden.</p>
       </div>
     </div>
     <div class="col-md-3">
       <div style="text-align:center;padding:16px;">
-        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">4</div>
+        <div style="width:56px;height:56px;line-height:56px;border-radius:50%;background-color:#005E7A;color:#fff;font-size:24px;font-weight:700;margin:0 auto 14px;">4</div>
         <h5 style="font-weight:700;">Confirm</h5>
         <p style="color:#555;line-height:1.7;">Blockers are re-checked, the chain is undone inside one savepoint, the chatter records it, and the document is draft.</p>
       </div>
@@ -180,20 +180,20 @@
   <div style="overflow-x:auto;margin-bottom:40px;">
     <table class="table" style="margin:0;">
       <tbody>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;width:30%;"><b>Odoo version</b></td><td style="padding:12px 16px;">19.0 (Community and Enterprise)</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;width:30%;"><b>Odoo version</b></td><td style="padding:12px 16px;">19.0 (Community and Enterprise)</td></tr>
         <tr><td style="padding:12px 16px;"><b>Depends on</b></td><td style="padding:12px 16px;">sale, sale_stock, sale_mrp, purchase, purchase_stock, stock, stock_account, mrp, account, mail</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Models added</b></td><td style="padding:12px 16px;">reset.to.draft.mixin (abstract), reset.to.draft.wizard and its two line models (transient)</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Models added</b></td><td style="padding:12px 16px;">reset.to.draft.mixin (abstract), reset.to.draft.wizard and its two line models (transient)</td></tr>
         <tr><td style="padding:12px 16px;"><b>Models extended</b></td><td style="padding:12px 16px;">sale.order, purchase.order, stock.picking, mrp.production &mdash; through the mixin, no core method is overridden</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Security</b></td><td style="padding:12px 16px;">Two groups under a dedicated privilege, access rules per group, and a second check inside the wizard</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Security</b></td><td style="padding:12px 16px;">Two groups under a dedicated privilege, access rules per group, and a second check inside the wizard</td></tr>
         <tr><td style="padding:12px 16px;"><b>Languages</b></td><td style="padding:12px 16px;">English, Russian, Uzbek</td></tr>
-        <tr style="background:#f7fafb;"><td style="padding:12px 16px;"><b>Tests</b></td><td style="padding:12px 16px;">12 automated tests covering stock revert, movement removal, chatter, blockers, the wizard and both access groups</td></tr>
+        <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Tests</b></td><td style="padding:12px 16px;">12 automated tests covering stock revert, movement removal, chatter, blockers, the wizard and both access groups</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
 <section class="oe_container">
-  <div style="background:#005E7A;border-radius:14px;padding:40px;text-align:center;">
+  <div style="background-color:#005E7A;border-radius:14px;padding:40px;text-align:center;">
     <h3 style="color:#fff;font-weight:700;margin-bottom:12px;">todoo.uz</h3>
     <p style="color:#A8D8E4;margin-bottom:6px;">Odoo implementation and custom development</p>
     <p style="color:#E8F4F7;margin:0;">Support: <a href="mailto:info@todoo.uz" style="color:#1AD3BB;">info@todoo.uz</a></p>
