@@ -4,7 +4,7 @@
         "Reset to Draft | Cancel Done Sale, Purchase, Delivery & Manufacturing "
         "Orders"
     ),
-    'version': '19.0.1.2.4',
+    'version': '19.0.1.2.5',
     'category': 'Inventory/Inventory',
     'summary': (
         "Undo a done Sales, Purchase, Transfer or Manufacturing document back to "
@@ -71,8 +71,6 @@ guarded by group, lock date and hash.
     'website': 'https://todoo.uz',
     'support': 'info@todoo.uz',
     'license': 'OPL-1',
-    'price': 5,
-    'currency': 'USD',
     'images': ['static/description/banner.png'],
     'depends': [
         'sale',
