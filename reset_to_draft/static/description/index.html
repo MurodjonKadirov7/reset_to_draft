@@ -214,7 +214,7 @@
         <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Models added</b></td><td style="padding:12px 16px;">reset.to.draft.mixin (abstract), reset.to.draft.wizard and its two line models (transient)</td></tr>
         <tr><td style="padding:12px 16px;"><b>Models extended</b></td><td style="padding:12px 16px;">sale.order, purchase.order, stock.picking, mrp.production &mdash; through the mixin, no core method is overridden</td></tr>
         <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Security</b></td><td style="padding:12px 16px;">Two groups under a dedicated privilege, access rules per group, and a second check inside the wizard</td></tr>
-        <tr><td style="padding:12px 16px;"><b>Languages</b></td><td style="padding:12px 16px;">English, Russian, Uzbek</td></tr>
+        <tr><td style="padding:12px 16px;"><b>Languages</b></td><td style="padding:12px 16px;">English, Russian, Uzbek &mdash; Odoo 18 does not ship the Uzbek language itself: add it first under Settings &rarr; Translations &rarr; Languages (developer mode), then update the module to load the Uzbek translation</td></tr>
         <tr style="background-color:#f7fafb;"><td style="padding:12px 16px;"><b>Tests</b></td><td style="padding:12px 16px;">20 automated tests covering stock revert, movement removal, chatter, blockers, the wizard, both access groups and the FIFO / AVCO valuation layers</td></tr>
       </tbody>
     </table>
